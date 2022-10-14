@@ -24,8 +24,8 @@
   password = 'Your password'
   courseName = 'Your courseName'
   # e.g.
-  username = 'zjzj16'
-  password = 'Zj##2022'
+  username = 'abc123'
+  password = '123456'
   courseName = '数据与信息技术基础'
   ```
 
