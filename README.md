@@ -5,30 +5,29 @@
 - 系统对学生上传附件重命名难以识别
 - 一个一个附件点击下载太麻烦，也难以管理
 
+
+
 #### 使用配置
 
-- main.py, line 5
+- 配置config.txt，项目根目录下创建config.txt并配置如下内容，注意每行的顺序不要调换，不要添加多余的空格
 
-  ```python
-  crawler = Admin666RUCCrawler(cookie, "Your exam name")
-  # e.g.
-  crawler = Admin666RUCCrawler(cookie, "问卷星数据收集作业（周二班）")
+  ```
+  username=Your username
+  password=Your password
+  courseName=Your courseName
+  examName=Your examName
   ```
 
-  
+  例如
 
-- admin666Crawler.py, line 9, 10, 11
-
-  ```python
-  username = 'Your username'
-  password = 'Your password'
-  courseName = 'Your courseName'
-  # e.g.
-  username = 'abc123'
-  password = '123456'
-  courseName = '数据与信息技术基础'
+  ```
+  username=zjzj99
+  password=Zj##9099
+  courseName=信息与基础数据
+  examName=（周二班）数据作业收集问卷星
   ```
 
+  - **Notice**: 由于有中文课程名和考试名，读取时注意潜在编码问题，代码中默认config.txt是utf-8编码格式（admin666Crawler line 41）,如果需要请自行修改编码格式
 
 
 #### 运行
@@ -36,6 +35,9 @@
 ```shell
 python main.py
 ```
+
+- cookie是我本地运行的cookie，目前没有测试过不用cookie仅靠request库的session能否登录，如果直接运行无法登录，请手动登录并拷贝自己浏览器的cookie替换main.py中的cookie，或联系开发人员。
+
 
 
 

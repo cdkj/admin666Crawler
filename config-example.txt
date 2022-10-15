@@ -1,0 +1,4 @@
+username=zjzj99
+password=Zj##9099
+courseName=信息与基础数据
+examName=（周二班）数据作业收集问卷星

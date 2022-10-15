@@ -6,9 +6,13 @@ import time
 
 class Admin666RUCCrawler:
 
-    username = 'zjzj16'
-    password = '.FUhang19991104,'
-    courseName = '数据与信息技术基础'
+    # Read from config.txt, see how to config in Readme.md
+    username = 'your username'
+    password = 'your password'
+    courseName = 'your courseName'
+    examName = 'your examName'
+
+
     savedir = ".\\appendix"
     baseUrl = 'http://admin666.ruc.edu.cn/Manage407108913Admin323'
     downloadBaseUrl = 'http://admin666.ruc.edu.cn'
@@ -28,24 +32,32 @@ class Admin666RUCCrawler:
     courseID = None
     appendixPage = None
 
-    def __init__(self, cookie, examName):
+    def __init__(self, cookie):
         self.session = requests.Session()
         self.header["Cookie"] = cookie
-        self.examName = examName
+        self.readConfig()
+
+    def readConfig(self):
+        with open(".\\config.txt", 'r', encoding='utf-8') as configFile:
+            config = configFile.readlines()
+            self.username = config[0].strip().split("=")[1]
+            self.password = config[1].strip().split("=")[1]
+            self.courseName = config[2].strip().split("=")[1]
+            self.examName = config[3].strip().split("=")[1]
 
     def checkDict(self):
         if os.path.exists(self.savedir):
             return
         os.mkdir(self.savedir)
 
-    def login(self):
+    def login(self, local=False):
+
         formData = {"username": self.username, "password": self.password, "images.x": 46, "images.y": 38}
         r = self.session.post(self.baseUrl + self.loginUrl, headers=self.header, data=formData)
         r.encoding = 'gbk'
         if '对不起，帐号或密码不正确，请重新输入' in r.text:
             print(Exception("Error when login. Message: " + r.text))
             exit(0)
-
 
     def getExamID(self):
 
