@@ -6,8 +6,8 @@ import time
 
 class Admin666RUCCrawler:
 
-    username = 'zjzj11'
-    password = 'Zj##2022'
+    username = 'zjzj16'
+    password = '.FUhang19991104,'
     courseName = '数据与信息技术基础'
     savedir = ".\\appendix"
     baseUrl = 'http://admin666.ruc.edu.cn/Manage407108913Admin323'
@@ -242,13 +242,11 @@ class Admin666RUCCrawler:
                 else:
                     print(Exception("Error when saving appendix. Please contact the developper at ahangge@ruc.edu.cn"))
                     exit(0)
-
-
-
-            
-            print("\n\n--- Downloading all Appendix END ---\n\n")
-            print("Your files are save as .\\appendix\\studentID.zip or some else zipped format.")
-            print("\n\n--- Exit --- \n\n")
+        
+        
+        print("\n\n--- Downloading all Appendix END ---\n\n")
+        print("Your files are save as .\\appendix\\studentID.zip or some else zipped format.")
+        print("\n\n--- Exit --- \n\n")
 
 
     # TODO: Extract all print to a log class
