@@ -25,7 +25,8 @@ class Admin666RUCCrawler:
     "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9", "Cache-Control": "max-age=0", "Connection": "keep-alive", "Content-Length": "61", 
     "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36",
     "Host": "admin666.ruc.edu.cn", "Origin": "http://admin666.ruc.edu.cn", "Referer": "http://admin666.ruc.edu.cn/Manage407108913Admin323/index.asp", "Upgrade-Insecure-Requests": "1"}
-    
+    errorLog = ".\\errlog.txt"
+
     examName = None
     session = None
     examID = None
@@ -182,6 +183,7 @@ class Admin666RUCCrawler:
         
         # --- Downloading Appendix Start ---
 
+        errorlog = open(self.errorLog, 'w')
         
 
         for pageNum in range(1, self.appendixPage+1):
@@ -246,14 +248,19 @@ class Admin666RUCCrawler:
 
                 time.sleep(1)
                 r = self.session.get(url)
-                with open(savepath, 'wb') as appendix:
-                    appendix.write(r.content)
                 
-                if os.path.exists(savepath):
-                    print('Save appendix to ' + savepath)
-                else:
-                    print(Exception("Error when saving appendix. Please contact the developper at ahangge@ruc.edu.cn"))
-                    exit(0)
+                try:
+                    with open(savepath, 'wb') as appendix:
+                        appendix.write(r.content)
+                    
+                    if os.path.exists(savepath):
+                        print('Save appendix to ' + savepath)
+                    else:
+                        print(Exception("Error when saving appendix. Please contact the developper at ahangge@ruc.edu.cn"))
+                        exit(0)
+                except:
+                    print("Error when saving " + savepath + ", write it in error log")
+                    errorlog.write(studentID + ": " + savepath + "\n")
         
         
         print("\n\n--- Downloading all Appendix END ---\n\n")
