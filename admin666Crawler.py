@@ -38,6 +38,12 @@ class Admin666RUCCrawler:
         self.header["Cookie"] = cookie
         self.readConfig()
 
+    def run(self):
+        self.checkDict()
+        self.login()
+        self.getExamID()
+        self.downloadAppendix()
+
     def readConfig(self):
         with open(".\\config.txt", 'r', encoding='utf-8') as configFile:
             config = configFile.readlines()
