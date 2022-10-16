@@ -177,7 +177,7 @@ class Admin666RUCCrawler:
 
         if not self.appendixPage:
             # only happens when the website interface changes
-            print(Exception("Error when get page number. Please contact the developper at ahangge@ruc.edu.cn"))
+            print(Exception("Error when get page number. Please contact the developper at ahangge@ruc.edu.cn\nOr there might be nothing needed to be scored."))
             exit(0)
 
         
